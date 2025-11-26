@@ -1,0 +1,389 @@
+/* ==================================== */
+/* RESET Y FONDOS (GLOBAL)              */
+/* ==================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* BODY: Configuración para el Modo Oscuro */
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 0; 
+}
+
+/* Imágenes */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==================================== */
+/* NAVBAR (Redonda/Píldora Centrada)  */
+/* ==================================== */
+nav {
+  position: relative; 
+  width: 90%;
+  max-width: 600px;
+  height: 60px;
+  /* Centrado y margen */
+  margin: 20px auto; 
+  background-color: #161b22;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  /* Forma de píldora */
+  border-radius: 30px; 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6); 
+  z-index: 100;
+}
+
+nav h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff6b6b;
+}
+
+nav a {
+  color: #c9d1d9;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #ff9191;
+}
+
+/* ==================================== */
+/* CONTENEDOR PRINCIPAL Y DISEÑO (MAIN) */
+/* ==================================== */
+main {
+  padding: 30px 40px 40px 40px; 
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* GRIDS: Estilo para la vista de Favoritos (o cualquier grilla) */
+.grid {
+  display: grid;
+  /* Define las columnas automáticamente, asegurando que cada tarjeta tenga al menos 150px de ancho */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  gap: 20px;
+}
+
+/* CORRECCIÓN DE FAVORITOS (Grilla pequeña y centrada) */
+.favorites-content .grid {
+  /* Limita el ancho máximo que puede ocupar la grilla */
+  max-width: 800px; 
+  /* Centra el contenedor de la grilla en la página */
+  margin: 0 auto; 
+}
+
+/* Corrección para una ÚNICA tarjeta en el grid de favoritos: Centrar y limitar ancho */
+.favorites-content .grid > .card:only-child {
+    max-width: 300px; /* Define el ancho máximo para la tarjeta única */
+    margin: 0 auto; /* Centrar la tarjeta si es la única dentro del grid limitado */
+}
+
+
+/* ==================================== */
+/* CARRUSEL HORIZONTAL                  */
+/* ==================================== */
+main > div {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar del Carrusel */
+main > div::-webkit-scrollbar {
+  height: 8px;
+}
+
+main > div::-webkit-scrollbar-thumb {
+  background-color: #ff6b6b;
+  border-radius: 4px;
+}
+
+main > div::-webkit-scrollbar-track {
+  background-color: #1f2530;
+  border-radius: 4px;
+}
+
+/* ==================================== */
+/* TARJETAS DE CONTENIDO (POSTER)       */
+/* ==================================== */
+.card {
+  flex: 0 0 auto;
+  width: 100%;
+  background-color: #161b22;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* Imagen de la tarjeta */
+.card img {
+  width: 100%;
+  aspect-ratio: 2 / 3; 
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+
+/* Información de la tarjeta (Contenedor de texto) */
+.card-info {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+
+/* Título */
+.card-info h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  padding: 0;
+}
+
+/* Texto secundario */
+.card-info p {
+  font-size: 0.85rem;
+  color: #959da5;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==================================== */
+/* BOTÓN DE FAVORITO (Icono Moderno)   */
+/* ==================================== */
+.fav-button {
+  position: absolute;
+  top: 8px; 
+  right: 8px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #c9d1d9;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+  opacity: 0;
+  font-size: 1.2rem; 
+  line-height: 1; 
+  padding: 0;
+  cursor: pointer;
+}
+
+.card:hover .fav-button {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fav-button:hover {
+  background-color: #ff6b6b;
+  color: #fff;
+  border-color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+/* Botón activo (Corazón relleno) */
+.fav-button.active {
+    opacity: 1;
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-color: #ff6b6b;
+}
+.fav-button.active:hover {
+    background-color: #ff4747;
+    color: #fff;
+}
+
+
+/* ==================================== */
+/* COMPONENTES DE FORMA Y BUSCADOR (Píldora Unificada) */
+/* ==================================== */
+
+/* Contenedor del formulario de búsqueda (Píldora unificada) */
+form {
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    /* Centrado */
+    margin: 0 auto 30px auto; 
+    border: none; 
+    border-radius: 40px; 
+    overflow: hidden; 
+    background-color: #161b22;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s;
+}
+
+form:focus-within {
+  box-shadow: 0 0 0 2px #ff6b6b, 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Campo de entrada de texto */
+input[type="text"] {
+  flex-grow: 1; 
+  padding: 0.75rem 1rem;
+  border: 2px solid transparent; 
+  border-right: none; 
+  border-radius: 40px 0 0 40px; 
+  font-size: 1rem;
+  background-color: transparent; 
+  color: #c9d1d9;
+  transition: all 0.3s;
+  height: 100%;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #ff6b6b; 
+}
+
+/* Botón de envío en formularios ('Buscar') */
+form button[type="submit"] {
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem; 
+  border-radius: 0 40px 40px 0; 
+  border: 2px solid transparent; 
+  transition: background-color 0.2s, border-color 0.3s;
+  height: 100%;
+  line-height: 1;
+}
+
+form button[type="submit"]:hover {
+  background-color: #ff4747;
+}
+
+/* Botón base (para otros botones en la app) */
+button {
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #ff4747;
+}
+
+
+/* ==================================== */
+/* MENSAJES (CARGA Y ERROR)             */
+/* ==================================== */
+p.error, p.loading {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #ff6b6b;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ff6b6b55;
+  background-color: #ff6b6b1a;
+}
+
+/* ==================================== */
+/* MEDIA QUERIES (RESPONSIVE)           */
+/* ==================================== */
+@media (max-width: 768px) {
+  nav {
+    width: 95%;
+    max-width: 95%;
+    flex-direction: row;
+    height: 50px;
+    padding: 0 15px;
+    border-radius: 25px;
+    margin: 10px auto;
+  }
+  
+  nav h1 {
+    font-size: 1.2rem;
+  }
+
+  nav a {
+    margin-left: 10px;
+    margin-right: 0;
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding-top: 20px;
+  }
+  
+  form {
+    flex-direction: column; 
+    margin-bottom: 20px;
+    width: 95%;
+    max-width: 95%;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #161b22;
+    border: 2px solid #30363d;
+  }
+  
+  form button[type="submit"] {
+    width: 100%;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .card {
+    width: 150px;
+  }
+  
+  .favorites-content .grid {
+    /* En móvil, permitimos que ocupe más espacio pero seguimos centrando */
+    max-width: 95%; 
+  }
+
+  .favorites-content .grid > .card:only-child {
+      max-width: 90%; /* Ajuste para móviles */
+  }
+}
