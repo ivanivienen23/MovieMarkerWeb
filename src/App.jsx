@@ -6,15 +6,15 @@ import { MovieProvider } from "./context/MovieContext";
 
 
 export default function App() {
-return (
-<BrowserRouter>
-<MovieProvider>
-<NavBar />
-<Routes>
-<Route path="/" element={<Home />} />
-<Route path="/favorites" element={<Favorites />} />
-</Routes>
-</MovieProvider>
-</BrowserRouter>
-);
+    return (
+        <BrowserRouter>
+            <MovieProvider>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/favorites" element={<Favorites />} />
+                </Routes>
+            </MovieProvider>
+        </BrowserRouter>
+    );
 }
